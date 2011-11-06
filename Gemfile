@@ -7,4 +7,5 @@ group :test do
   gem 'cucumber'
   gem 'rake'
   gem 'rspec'
+  gem 'sqlite3'
 end

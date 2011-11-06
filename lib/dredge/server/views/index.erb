@@ -1,0 +1,20 @@
+<section id="fields">
+  <form method='get' action='/dredge'>
+    <% @fields.each_pair do |name, display_name| %>
+      <input type="checkbox" name="<%= name %>">
+      <label for="<%= name %>"><%= display_name %></label>
+      <br>
+    <% end %>
+    <input type="submit" value="Apply">
+  </form>
+</section>
+
+<section id="results">
+  <table>
+    <thead>
+      <% @columns.each do |column| %>
+        <th><%= column %></th>
+      <% end %>
+    </thead>
+  </table>
+</section>
