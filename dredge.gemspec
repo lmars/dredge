@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.authors   = ['Lewis Marshall']
 
   s.add_dependency 'activerecord'
+  s.add_dependency 'activesupport'
   s.add_dependency 'sinatra'
 
   s.description = <<description
