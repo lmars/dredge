@@ -9,6 +9,9 @@ Gem::Specification.new do |s|
   s.email     = 'lewismarshall86@gmail.com'
   s.authors   = ['Lewis Marshall']
 
+  s.add_dependency 'activerecord'
+  s.add_dependency 'sinatra'
+
   s.description = <<description
     Dredge is a gem providing an intuitive interface to extract data from a Rails application.
 description
