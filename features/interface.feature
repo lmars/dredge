@@ -19,3 +19,17 @@ Feature: Using the interface
 
      When I select some User fields
      Then I should see the selected fields in the results table
+
+  Scenario: viewing the results when there is no data
+    Given I am on the dredge interface page
+      And I have chosen to show results for the User model
+      And there are no User records in the system
+      And I select some User fields
+     Then I should be told there are no results
+
+  Scenario: viewing the results when there is some data
+    Given I am on the dredge interface page
+      And I have chosen to show results for the User model
+      And there are some User records in the system
+      And I select some User fields
+     Then I should see some User data in the results table

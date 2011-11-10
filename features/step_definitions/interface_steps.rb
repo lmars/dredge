@@ -6,6 +6,18 @@ Given %r{I am on the dredge interface page} do
   visit(dredge_interface_path)
 end
 
+Given %r{I have chosen to show results for the (\w+) model} do |klass|
+  step "I choose to show results for the #{klass} model"
+end
+
+Given %r{there are (no|some) (\w+) records in the system} do |no_or_some, klass|
+  if no_or_some == 'no'
+    delete_records_for(klass)
+  else
+    add_records_for(klass)
+  end
+end
+
 When %r{I select some (\w+) fields} do |klass|
   within(fields_section) do
     select_fields_for(klass)
@@ -39,5 +51,17 @@ end
 Then %r{I should see the selected fields in the results table} do
   within(results_section) do
     page_should_have_selected_fields
+  end
+end
+
+Then %r{I should be told there are no results} do
+  within(results_section) do
+    page_should_have_no_results
+  end
+end
+
+Then %r{I should see some (\w+) data in the results table} do |klass|
+  within(results_section) do
+    page_should_have_results_for(klass)
   end
 end

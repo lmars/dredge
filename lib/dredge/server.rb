@@ -2,11 +2,13 @@ require 'sinatra/base'
 
 module Dredge
   class Server < Sinatra::Base
+    enable :sessions
+
     set :root, File.expand_path('../server', __FILE__)
 
     get '/dredge' do
       @models = Dredge.models
-      @selected_model = params[:model].try(:constantize)
+      session[:model] = params[:model].constantize if params[:model]
 
       @fields = {}
       Dredge.models.each do |model|
@@ -15,11 +17,23 @@ module Dredge
         end
       end
 
-      @columns = []
+      session[:fields] ||= []
+
       if params[:fields]
+        session[:fields] = []
         params[:fields].each_pair do |model, fields|
           fields.each_pair do |field, value|
-            @columns << @fields["fields[#{model}][#{field}]"]
+            session[:fields] << @fields["fields[#{model}][#{field}]"]
+          end
+        end
+      end
+
+      @results = []
+      if session[:model]
+        session[:model].all.each do |record|
+          @results << session[:fields].inject({}) do |result, column|
+            result[column] = record.send(column)
+            result
           end
         end
       end
