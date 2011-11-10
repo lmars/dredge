@@ -15,6 +15,10 @@ def select_fields_for(klass)
   end
 end
 
+def have_field_for(klass)
+  have_selector(%{input[type="radio"][value="#{klass}"]})
+end
+
 def have_fields_for(klass)
   have_selector(%{input[type="checkbox"][name^="fields[#{klass}]"]})
 end
@@ -23,6 +27,10 @@ def page_should_have_selected_fields
   @selected_fields.each do |field|
     page.should have_content(field[:value])
   end
+end
+
+def models_section
+  '#models'
 end
 
 def fields_section

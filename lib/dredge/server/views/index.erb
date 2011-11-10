@@ -1,3 +1,14 @@
+<section id="models">
+  <form method='get' action='/dredge'>
+    <% @models.each do |klass| %>
+      <input type="radio" id="model-<%= klass %>" name="model" value="<%= klass %>">
+      <label for="model-<%= klass %>"><%= klass %></label>
+      <br>
+    <% end %>
+    <input type="submit" value="Apply">
+  </form>
+</section>
+
 <section id="fields">
   <form method='get' action='/dredge'>
     <% @fields.each_pair do |name, display_name| %>

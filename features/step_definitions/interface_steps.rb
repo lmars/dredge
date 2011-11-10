@@ -13,6 +13,12 @@ When %r{I select some (\w+) fields} do |klass|
   end
 end
 
+Then %r{I should be able to choose to show results for the (\w+) model} do |klass|
+  within(models_section) do
+    page.should have_field_for(klass)
+  end
+end
+
 Then %r{I should be able to select some (\w+) fields} do |klass|
   within(fields_section) do
     page.should have_fields_for(klass)

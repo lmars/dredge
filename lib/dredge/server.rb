@@ -5,6 +5,8 @@ module Dredge
     set :root, File.expand_path('../server', __FILE__)
 
     get '/dredge' do
+      @models = Dredge.models
+
       @fields = {}
       Dredge.models.each do |model|
         model.column_names.each do |column_name|

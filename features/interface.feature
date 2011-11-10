@@ -6,6 +6,10 @@ Feature: Using the interface
   Background:
     Given a User model
 
+  Scenario: selecting a model to show records for
+    Given I am on the dredge interface page
+     Then I should be able to choose to show results for the User model
+
   Scenario: selecting what fields to show
     Given I am on the dredge interface page
      Then I should be able to select some User fields
