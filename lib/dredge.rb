@@ -1,8 +1,10 @@
+require 'set'
+
 module Dredge
   class << self
     attr_accessor :models
   end
-  self.models = []
+  self.models = Set.new
 
   autoload :Server, 'dredge/server'
 end
