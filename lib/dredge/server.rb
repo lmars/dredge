@@ -17,8 +17,6 @@ module Dredge
         end
       end
 
-      session[:fields] ||= []
-
       if params[:fields]
         session[:fields] = []
         params[:fields].each_pair do |model, fields|
@@ -29,9 +27,9 @@ module Dredge
       end
 
       @results = []
-      if session[:model]
-        session[:model].all.each do |record|
-          @results << session[:fields].inject({}) do |result, column|
+      if session[:model] && session[:fields]
+        @results = session[:model].all.map do |record|
+          session[:fields].inject({}) do |result, column|
             result[column] = record.send(column)
             result
           end
