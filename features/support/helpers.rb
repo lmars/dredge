@@ -15,6 +15,10 @@ def select_fields_for(klass)
   end
 end
 
+def choose_field_for(klass)
+  choose("model-#{klass}")
+end
+
 def have_field_for(klass)
   have_selector(%{input[type="radio"][value="#{klass}"]})
 end

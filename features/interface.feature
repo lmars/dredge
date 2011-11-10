@@ -12,6 +12,9 @@ Feature: Using the interface
 
   Scenario: selecting what fields to show
     Given I am on the dredge interface page
+     Then I should not be able to select some User fields
+
+     When I choose to show results for the User model
      Then I should be able to select some User fields
 
      When I select some User fields

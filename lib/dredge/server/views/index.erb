@@ -10,14 +10,16 @@
 </section>
 
 <section id="fields">
-  <form method='get' action='/dredge'>
-    <% @fields.each_pair do |name, display_name| %>
-      <input type="checkbox" name="<%= name %>">
-      <label for="<%= name %>"><%= display_name %></label>
-      <br>
-    <% end %>
-    <input type="submit" value="Apply">
-  </form>
+  <% if @selected_model %>
+    <form method='get' action='/dredge'>
+      <% @fields.each_pair do |name, display_name| %>
+        <input type="checkbox" name="<%= name %>">
+        <label for="<%= name %>"><%= display_name %></label>
+        <br>
+      <% end %>
+      <input type="submit" value="Apply">
+    </form>
+  <% end %>
 </section>
 
 <section id="results">

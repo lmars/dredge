@@ -6,6 +6,7 @@ module Dredge
 
     get '/dredge' do
       @models = Dredge.models
+      @selected_model = params[:model].try(:constantize)
 
       @fields = {}
       Dredge.models.each do |model|
