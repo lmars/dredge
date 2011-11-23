@@ -6,12 +6,17 @@ module Dredge
 
     set :root, File.expand_path('../server', __FILE__)
 
+    helpers do
+      def models
+        Dredge.models
+      end
+    end
+
     get '/dredge' do
-      @models = Dredge.models
       session[:model] = params[:model].constantize if params[:model]
 
       @fields = {}
-      Dredge.models.each do |model|
+      models.each do |model|
         model.column_names.each do |column_name|
           @fields["fields[#{model}][#{column_name}]"] = column_name
         end
