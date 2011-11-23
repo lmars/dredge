@@ -22,6 +22,12 @@
   <% end %>
 </section>
 
+<section id="filters">
+  <% if session[:model] %>
+    <a href="/dredge/filters">Add Filter</a>
+  <% end %>
+</section>
+
 <section id="results">
   <% if session[:fields] %>
     <table>

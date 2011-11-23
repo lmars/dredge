@@ -2,6 +2,10 @@ def dredge_interface_path
   '/dredge'
 end
 
+def dredge_filter_path
+  '/dredge/filters'
+end
+
 def require_model(klass)
   require "activerecord/models/#{klass.underscore}"
   Dredge.models << klass.constantize
@@ -23,8 +27,21 @@ def select_fields_for(klass)
   end
 end
 
+def select_filter_for(klass)
+  choose(find(%{input[type="radio"][value^="#{klass}"]})[:name])
+end
+
 def choose_field_for(klass)
   choose("model-#{klass}")
+end
+
+def choose_equality_filter
+  select('is equal to', :from => 'filter[operator]')
+end
+
+def insert_a_filter_value
+  @filter_value = 'randomness'
+  fill_in('filter[value]', :with => @filter_value)
 end
 
 def have_field_for(klass)
@@ -33,6 +50,18 @@ end
 
 def have_fields_for(klass)
   have_selector(%{input[type="checkbox"][name^="fields[#{klass}]"]})
+end
+
+def have_filters_for(klass)
+  have_selector(%{input[type="radio"][value^="#{klass}"]})
+end
+
+def have_filter_operator_fields
+  have_selector(%{option[value="="]})
+end
+
+def have_filter_value_field
+  have_selector(%{input[type="text"][name="filter[value]"]})
 end
 
 def page_should_have_selected_fields

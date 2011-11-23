@@ -26,6 +26,7 @@ When %r{I select some (\w+) fields} do |klass|
 end
 
 When %r{I choose to show results for the (\w+) model} do |klass|
+  step "I am on the dredge interface page"
   within(models_section) do
     choose_field_for(klass)
     click_button('Apply')

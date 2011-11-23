@@ -43,5 +43,23 @@ module Dredge
 
       erb :index
     end
+
+    get '/dredge/filters' do
+      @filters = {}
+      models.each do |model|
+        model.column_names.each do |column_name|
+          @filters["#{model}##{column_name}"] = column_name
+        end
+      end
+
+      if params[:filter]
+        filter = params[:filter].split('#')
+        session[:filter] = {
+          :model => filter[0],
+          :column => filter[1]
+        }
+      end
+      erb :filters
+    end
   end
 end

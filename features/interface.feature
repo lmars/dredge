@@ -1,7 +1,7 @@
 Feature: Using the interface
   In order to view custom data
   As a user
-  I want to use an interface for viewing and filtering data
+  I want to use an interface for viewing data
 
   Background:
     Given a User model

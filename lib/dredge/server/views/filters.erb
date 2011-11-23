@@ -1,0 +1,26 @@
+<section id="filters">
+  <% if session[:model] %>
+    <% if session[:filter] %>
+      <form method='get' action='/dredge'>
+        <label for='filter[operator]'>Operator:</label>
+        <select name='filter[operator]'>
+          <option value='='>is equal to</option>
+        </select>
+        <label for='filter[value]'>Value:</label>
+        <input type='text' name='filter[value]' />
+        <input type="submit" value="Apply">
+      </form>
+    <% else %>
+      <form method='get' action='/dredge/filters'>
+        <% @filters.each_pair do |name, display_name| %>
+          <input type="radio" name="filter" value="<%= name %>">
+          <label><%= display_name %></label>
+          <br>
+        <% end %>
+        <input type="submit" value="Add">
+      </form>
+    <% end %>
+  <% end %>
+</section>
+
+
