@@ -46,6 +46,16 @@
       <h1>Welcome to the Dredge!</h1>
       <p>Use this interface to browse through the data in your Rails app.</p>
 
+      <section id="models">
+        <h2>Choose a model below to get started</h2>
+
+        <div class="btn-group" data-toggle="buttons-radio">
+          <% models.each do |model| %>
+            <a class='btn' href="#"><%= model %></a>
+          <% end %>
+        </div>
+      </section>
+
     </div>
 
     <!-- Placed at the end of the document so the pages load faster -->
