@@ -7,6 +7,7 @@ Feature: Using the interface
     Given dredge has some models
     Then I should be able to select a model from a list
 
+  @javascript
   Scenario: Viewing some data for a model
     Given dredge has a model
       And some data exists for the model
