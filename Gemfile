@@ -4,6 +4,7 @@ gemspec
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'factory_girl'
